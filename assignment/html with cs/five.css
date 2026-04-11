@@ -12,8 +12,10 @@ a{
     color: white;
     background: rgba(43, 168, 180, 0.536);
     border-radius: 20px;
+    transition: 0.3s;
 }
 
 a:hover{
     background: rgba(0, 74, 246, 0.4);
+    transform: scale(1.05);
 }
