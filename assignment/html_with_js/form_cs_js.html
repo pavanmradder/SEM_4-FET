@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Admission Form</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,10 +70,24 @@
             margin-top: 20px;
             font-weight: bold;
         }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            background: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
     <h1 class="title">Admission Form</h1>
+
     <div class="form-container">
         <form id="admissionForm">
 
@@ -92,15 +108,19 @@
                 <input type="radio" name="gender" value="Male"> Male
                 <input type="radio" name="gender" value="Female"> Female
             </div>
+
             <button type="submit">Submit</button>
             <button type="button" id="displayBtn">Display</button>
+
         </form>
     </div>
+
     <div class="result" id="result"></div>
-  <div class="nav-links">
-             <a href="https://pavanmradder.github.io/SEM_4-FET/"> Home page</a>
-        </div>
+
+    <div class="nav-links">
+        <a href="https://pavanmradder.github.io/SEM_4-FET/">Home page</a>
     </div>
+
     <script>
         const form = document.getElementById("admissionForm");
         const displayBtn = document.getElementById("displayBtn");
@@ -108,6 +128,7 @@
 
         let storedData = {};
 
+        // SUBMIT BUTTON
         form.addEventListener("submit", function(event) {
             event.preventDefault();
 
@@ -121,7 +142,6 @@
                 alert("Please fill all fields!");
                 return;
             }
-
             storedData = {
                 name,
                 phone,
@@ -132,7 +152,13 @@
 
             alert("Data saved! Click DISPLAY to view.");
         });
+
         displayBtn.addEventListener("click", function() {
+
+            if (!storedData.name) {
+                result.innerHTML = "No data submitted yet!";
+                return;
+            }
             result.innerHTML = `
                 <p>Name: ${storedData.name}</p>
                 <p>Phone: ${storedData.phone}</p>
@@ -142,5 +168,6 @@
             `;
         });
     </script>
+
 </body>
 </html>
