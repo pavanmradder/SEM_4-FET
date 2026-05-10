@@ -71,11 +71,11 @@
     </div>
 </body>
 <script>
-    let layer1=document.querySelector(".red-box");
-    let layer2=document.querySelector(".green-box");
-    let layer3=document.querySelector(".blue-box");
-    let layer4=document.querySelector(".yellow-box");
-
+    let layer1 = document.querySelector(".red-box");
+    let layer2 = document.querySelector(".green-box");
+    let layer3 = document.querySelector(".blue-box");
+    let layer4 = document.querySelector(".yellow-box");
+    let topZ = 5;
     function swapLayer(color){
         let selectedLayer;
         if(color === "red"){
@@ -90,20 +90,20 @@
         else if(color === "yellow"){
             selectedLayer = layer4;
         }
-        let currentZ = selectedLayer.style.zIndex;
-        selectedLayer.style.zIndex = 5;
-}
-  document.getElementById("red").onclick = function(){
-  swapLayer("red");
-  }
-  document.getElementById("green").onclick = function(){
-  swapLayer("green");
-  }
-  document.getElementById("Blue").onclick = function(){
-  swapLayer("blue");
-  }
-  document.getElementById("yellow").onclick = function(){
-  swapLayer("yellow");
-  }
+        topZ++;
+        selectedLayer.style.zIndex = topZ;
+    }
+    document.getElementById("red").onclick = function(){
+        swapLayer("red");
+    }
+    document.getElementById("green").onclick = function(){
+        swapLayer("green");
+    }
+    document.getElementById("Blue").onclick = function(){
+        swapLayer("blue");
+    }
+    document.getElementById("yellow").onclick = function(){
+        swapLayer("yellow");
+    }
 </script>
 </html>
