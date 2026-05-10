@@ -39,6 +39,15 @@ h1{
     margin-bottom:20px;
 }
 
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
 button{
     padding:12px 25px;
     border:none;
@@ -52,6 +61,12 @@ button{
 
 button:hover{
     transform:scale(1.05);
+}
+
+#attempts{
+    margin-top:15px;
+    color:#444;
+    font-weight:bold;
 }
 
 #homepage{
@@ -69,42 +84,46 @@ button:hover{
 <body>
 <div class="container">
     <h1>🔐 System Login</h1>
-    <h3 id="status">Click button to login</h3>
-    <button id="loginBtn">Enter Password</button><br>
+    <h3 id="status">Enter Password</h3>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button id="loginBtn">Login</button>
+    <p id="attempts">Attempts Left : 3</p>
     <a id="homepage"href="https://pavanmradder.github.io/SEM_4-FET/">Home Page</a>
 </div>
-
+    
 <script>
 let btn = document.getElementById("loginBtn");
+let passwordInput = document.getElementById("password");
 let statusText = document.getElementById("status");
-btn.addEventListener("click", ()=>{
-    let start;
-    do{
-        start = prompt("Type YES to start login");
-    }
-    while(start.toLowerCase() !== "yes");
-    let attempts = 3;
+let attemptsText = document.getElementById("attempts");
+let attempts = 3;
+
+btn.addEventListener("click", function(){
     while(attempts > 0){
-        let password = prompt("Enter Password");
+        let password = passwordInput.value;
         if(password === "@123"){
-            alert("Login Successful!");
             statusText.textContent = "✅ Login Successful!";
             statusText.style.color = "green";
-            btn.style.display = "none";
+            btn.disabled = true;
+            passwordInput.disabled = true;
             break;
         }
         else{
             attempts--;
+            attemptsText.textContent =
+            `Attempts Left : ${attempts}`;
             if(attempts > 0){
-                alert("❌ Wrong Password!");
-                alert(`You have ${attempts} attempts left`);
+                statusText.textContent = "❌ Wrong Password!";
+                statusText.style.color = "red";
+                passwordInput.value = "";
             }
             else{
-                alert("🚫 Login Failed!");
-                statusText.textContent = "❌ Login Failed!";
+                statusText.textContent ="🚫 Login Failed!";
                 statusText.style.color = "red";
-                btn.style.display = "none";
+                btn.disabled = true;
+                passwordInput.disabled = true;
             }
+            break;
         }
     }
 });
