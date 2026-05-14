@@ -3,7 +3,6 @@ let passwordInput = document.getElementById("password");
 let statusText = document.getElementById("status");
 let attemptsText = document.getElementById("attempts");
 let attempts = 3;
-
 btn.addEventListener("click", function(){
     while(attempts > 0){
         let password = passwordInput.value;
